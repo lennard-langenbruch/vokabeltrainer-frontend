@@ -1,23 +1,46 @@
 <template>
   <ion-page>
+
     <ion-header>
       <ion-toolbar>
-        <ion-title>Tab 1</ion-title>
+        <ion-title>Hello {username} !</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Home</ion-title>
-        </ion-toolbar>
-      </ion-header>
 
-      <ExploreContainer name="Tab 1 page" />
+    <ion-content>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title><h2>Streak</h2></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Your current streak is {days} <ion-icon name="flame"></ion-icon></p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title><h2>Idea of the day</h2></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Here's a small text description for the card content.</p>
+          <p>Nothing more, nothing less.</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title><h2>Tutorial</h2></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Here you can look up all functionalities of this app !</p>
+        </ion-card-content>
+      </ion-card>
     </ion-content>
+
   </ion-page>
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/vue';
+//import ExploreContainer from '@/components/ExploreContainer.vue';
 </script>
