@@ -15,10 +15,10 @@
         </ion-tab-button>
 
         <ion-tab-button tab="settings" href="/tabs/tab3">
-          <ion-icon aria-hidden="true" :icon="settings" />
-          <ion-label>Settings</ion-label>
+          <ion-icon aria-hidden="true" :icon="person"></ion-icon>
+          <ion-label>Account</ion-label>
         </ion-tab-button>
-        
+
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>
@@ -26,5 +26,5 @@
 
 <script setup lang="ts">
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { home, book, settings } from 'ionicons/icons';
+import { home, book, person } from 'ionicons/icons';
 </script>

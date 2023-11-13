@@ -11,37 +11,19 @@
       <!-- Ion List with slideable Ion Items -->
       <ion-list>
         <!-- Item #1 -->
-        <ion-item-sliding>
+        <ion-item-sliding v-for="user in users">
           <ion-item>
-            <ion-label>Example Lecture #1</ion-label>
+            <ion-label>{{ user['firstName'] }}</ion-label>
           </ion-item>
           <ion-item-options>
-            <ion-item-option ><ion-icon name="trash"></ion-icon></ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-        <!-- Item #2 -->
-        <ion-item-sliding>
-          <ion-item>
-            <ion-label>Example Lecture #2</ion-label>
-          </ion-item>
-          <ion-item-options>
-            <ion-item-option ><ion-icon name="trash"></ion-icon></ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-        <!-- Item #3 -->
-        <ion-item-sliding>
-          <ion-item>
-            <ion-label>Example Lecture #3</ion-label>
-          </ion-item>
-          <ion-item-options>
-            <ion-item-option ><ion-icon name="trash"></ion-icon></ion-item-option>
+            <ion-item-option color="danger"><ion-icon :icon="trash"></ion-icon></ion-item-option>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>
 
       <!-- Button to add new Items -->
         <ion-fab>
-          <ion-fab-button>
+          <ion-fab-button @click="" size="small">
             <ion-icon :icon="add"></ion-icon>
           </ion-fab-button>
         </ion-fab>
@@ -59,4 +41,29 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel
 } from '@ionic/vue';
 import { add, trash } from 'ionicons/icons';
 import ExploreContainer from '@/components/ExploreContainer.vue';
+
+import axios from 'axios';
+
+import { ref, onMounted } from 'vue';
+
+const users = ref([]);
+
+onMounted(async () => {
+  try {
+    const response = await axios.get('https://dummyjson.com/users?limit=5');
+    users.value = response.data['users'];
+
+    console.log(response.data)
+    //console.log(users.value);
+
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+})
+
+
+// axios request
+// https://dummyjson.com/products?limit=5
+
+
 </script>
