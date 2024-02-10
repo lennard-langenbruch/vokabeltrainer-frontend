@@ -12,7 +12,7 @@
       <ion-list>
         <!-- Item #1 -->
         <ion-item-sliding v-for="user in users">
-          <ion-item>
+          <ion-item @click="goToWordlistView(String(user['lastName']))">
             <ion-label>{{ user['firstName'] }}</ion-label>
           </ion-item>
           <ion-item-options>
@@ -23,7 +23,7 @@
 
       <!-- Button to add new Items -->
         <ion-fab>
-          <ion-fab-button @click="" size="small">
+          <ion-fab-button @click="foo" size="small">
             <ion-icon :icon="add"></ion-icon>
           </ion-fab-button>
         </ion-fab>
@@ -40,30 +40,32 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel
          IonFab, IonFabButton, IonIcon, IonItemOption, IonItemOptions, IonItemSliding 
 } from '@ionic/vue';
 import { add, trash } from 'ionicons/icons';
-import ExploreContainer from '@/components/ExploreContainer.vue';
 
 import axios from 'axios';
 
 import { ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 const users = ref([]);
+const route = useRouter();
 
 onMounted(async () => {
   try {
     const response = await axios.get('https://dummyjson.com/users?limit=5');
     users.value = response.data['users'];
 
-    console.log(response.data)
-    //console.log(users.value);
-
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 })
 
+const foo = () => window.alert("alert");
 
-// axios request
-// https://dummyjson.com/products?limit=5
+function goToWordlistView(lecture : string) {
 
+  // und im anderem view dann /wordlist/{lecture}
+  // und List<String> list = repo.findWordlistByLecture({lecture})
+  route.push("/wordlist/" + lecture);
+}
 
 </script>
